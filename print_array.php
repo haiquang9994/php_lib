@@ -2,11 +2,16 @@
 
 function print_value($value)
 {
+    if (is_null($value)) {
+        return 'null';
+    }
     if (is_bool($value)) {
         return $value ? 'true' : 'false';
     }
     if (is_numeric($value)) {
-        return $value;
+        if (strpos(strval($value), '0') !== 0) {
+            return $value;
+        }
     }
     if (is_object($value)) {
         $value = json_encode($value);
